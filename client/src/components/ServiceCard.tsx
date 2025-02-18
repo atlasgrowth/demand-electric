@@ -20,7 +20,6 @@ export function ServiceCard({
   const [isHovered, setIsHovered] = useState(false);
   const { toast } = useToast();
 
-  // Category-based styling
   const categoryStyles = {
     residential: {
       accentColor: "#0039A6",
@@ -29,13 +28,13 @@ export function ServiceCard({
       iconBg: "bg-blue-50",
     },
     commercial: {
-      accentColor: "#0039A6", // Changed to match site theme
+      accentColor: "#0039A6",
       gradientStart: "#EEF5FF",
       gradientEnd: "#D6E8FF",
       iconBg: "bg-blue-50",
     },
     maintenance: {
-      accentColor: "#0039A6", // Changed to match site theme
+      accentColor: "#0039A6",
       gradientStart: "#EEF5FF",
       gradientEnd: "#D6E8FF",
       iconBg: "bg-blue-50",
