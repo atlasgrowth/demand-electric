@@ -12,13 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Git config
+        run: |
+          git config --global user.name "atlasgrowth"
+          git config --global user.email "atlasgrowth@users.noreply.github.com"
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
       - name: Build
