@@ -29,13 +29,13 @@ export function ServiceCard({
       iconBg: "bg-blue-50",
     },
     commercial: {
-      accentColor: "#0055CC",
-      gradientStart: "#E6F0FF",
-      gradientEnd: "#C2DDFF",
-      iconBg: "bg-blue-100",
+      accentColor: "#0039A6", // Changed to match site theme
+      gradientStart: "#EEF5FF",
+      gradientEnd: "#D6E8FF",
+      iconBg: "bg-blue-50",
     },
     maintenance: {
-      accentColor: "#0039A6",
+      accentColor: "#0039A6", // Changed to match site theme
       gradientStart: "#EEF5FF",
       gradientEnd: "#D6E8FF",
       iconBg: "bg-blue-50",
@@ -60,7 +60,6 @@ export function ServiceCard({
       className="h-full"
     >
       <Card className="h-full overflow-hidden shadow-sm hover:shadow-md transition-all relative">
-        {/* Category indicator line */}
         <div 
           className="absolute left-0 top-0 w-1 h-full" 
           style={{ backgroundColor: style.accentColor }}
@@ -118,7 +117,6 @@ export function ServiceCard({
           </motion.button>
         </CardFooter>
 
-        {/* Animated highlight effect on hover */}
         <AnimatePresence>
           {isHovered && (
             <motion.div
