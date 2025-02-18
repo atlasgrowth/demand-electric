@@ -1,5 +1,4 @@
 import { Link, useLocation } from "wouter";
-import { EmergencyBanner } from "./EmergencyBanner";
 import { cn } from "@/lib/utils";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -13,7 +12,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <EmergencyBanner />
       <header className="bg-white border-b">
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/">
@@ -50,7 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <h3 className="font-bold text-lg mb-4">Contact</h3>
-              <p>24/7 Emergency Service</p>
+              <p>Professional Electrical Services</p>
               <a href="tel:+15016936229" className="hover:underline">
                 (501) 693-6229
               </a>
@@ -58,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-bold text-lg mb-4">Hours</h3>
               <p>Monday - Friday: 8am - 5pm</p>
-              <p>Emergency Service: 24/7</p>
+              <p>By Appointment on Weekends</p>
             </div>
           </div>
         </div>

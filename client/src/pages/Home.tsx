@@ -13,22 +13,26 @@ export default function HomePage() {
     {
       icon: CircuitBoard,
       title: "Electrical Panels",
-      description: "Expert panel upgrades, repairs, and installations for your safety",
+      description: "Expert panel upgrades, repairs, and installations for your safety and compliance",
+      category: "residential" as const
     },
     {
       icon: Home,
-      title: "Residential Wiring",
-      description: "Complete home electrical services including new construction and remodels",
+      title: "Residential Service",
+      description: "Professional electrical solutions for homeowners, from repairs to full installations",
+      category: "residential" as const
     },
     {
       icon: Building2,
-      title: "Commercial Services",
-      description: "Comprehensive electrical solutions for businesses of all sizes",
+      title: "Commercial Solutions",
+      description: "Comprehensive electrical services for businesses of all sizes",
+      category: "commercial" as const
     },
     {
       icon: Power,
-      title: "Power Solutions",
-      description: "Reliable power distribution and electrical system maintenance",
+      title: "Preventive Maintenance",
+      description: "Regular inspections and maintenance to keep your electrical systems running smoothly",
+      category: "maintenance" as const
     },
   ];
 

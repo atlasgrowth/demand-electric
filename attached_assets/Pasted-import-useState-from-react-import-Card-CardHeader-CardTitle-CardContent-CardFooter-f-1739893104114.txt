@@ -1,0 +1,193 @@
+import { useState } from "react";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { motion, AnimatePresence } from "framer-motion";
+import { LucideIcon, ChevronRight, Clock, Award, CheckCircle } from "lucide-react";
+
+interface ServiceFeature {
+  text: string;
+  isPopular?: boolean;
+}
+
+interface ServiceCardProps {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  imageUrl?: string;
+  features?: ServiceFeature[];
+  estimatedTime?: string;
+  startingPrice?: string;
+  ctaText?: string;
+  onCtaClick?: () => void;
+  category?: "residential" | "commercial" | "emergency" | "maintenance";
+}
+
+export function ServiceCard({
+  title,
+  description,
+  icon: Icon,
+  imageUrl,
+  features = [],
+  estimatedTime,
+  startingPrice,
+  ctaText = "Learn More",
+  onCtaClick,
+  category = "residential",
+}: ServiceCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Category-based styling
+  const categoryStyles = {
+    residential: {
+      accentColor: "#0039A6",
+      gradientStart: "#EEF5FF",
+      gradientEnd: "#D6E8FF",
+      iconBg: "bg-blue-50",
+    },
+    commercial: {
+      accentColor: "#0055CC",
+      gradientStart: "#E6F0FF",
+      gradientEnd: "#C2DDFF",
+      iconBg: "bg-blue-100",
+    },
+    emergency: {
+      accentColor: "#E05D00",
+      gradientStart: "#FFF2EB",
+      gradientEnd: "#FFE0D1",
+      iconBg: "bg-orange-50",
+    },
+    maintenance: {
+      accentColor: "#006644",
+      gradientStart: "#E6F6F0",
+      gradientEnd: "#C2ECD9",
+      iconBg: "bg-green-50",
+    },
+  };
+
+  const style = categoryStyles[category];
+
+  return (
+    <motion.div
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="h-full"
+    >
+      <Card className="h-full overflow-hidden shadow-sm hover:shadow-md transition-all relative">
+        {/* Category indicator line */}
+        <div 
+          className="absolute left-0 top-0 w-1 h-full" 
+          style={{ backgroundColor: style.accentColor }}
+        />
+
+        {/* Background image if provided */}
+        {imageUrl && (
+          <div className="absolute top-0 right-0 w-24 h-24 opacity-10 overflow-hidden rounded-bl-3xl">
+            <div 
+              className="w-full h-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            />
+          </div>
+        )}
+
+        <CardHeader className="pb-2">
+          <div className="flex items-start justify-between">
+            <div 
+              className={`w-14 h-14 rounded-lg ${style.iconBg} flex items-center justify-center mb-4`}
+              style={{
+                background: `linear-gradient(135deg, ${style.gradientStart}, ${style.gradientEnd})`,
+                boxShadow: `0 4px 8px rgba(0, 57, 166, 0.1)`
+              }}
+            >
+              <Icon 
+                className="h-7 w-7" 
+                style={{ color: style.accentColor }}
+              />
+            </div>
+
+            {startingPrice && (
+              <div className="text-sm font-medium px-3 py-1 rounded-full bg-gray-50 text-gray-600">
+                From ${startingPrice}
+              </div>
+            )}
+          </div>
+          
+          <CardTitle 
+            className="text-xl font-bold relative"
+            style={{ color: style.accentColor }}
+          >
+            {title}
+            <div 
+              className="h-0.5 w-12 mt-2 mb-1 transition-all duration-300"
+              style={{ 
+                backgroundColor: style.accentColor,
+                width: isHovered ? '40px' : '20px'
+              }}
+            />
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <p className="text-gray-600 leading-relaxed mb-4">{description}</p>
+          
+          {features.length > 0 && (
+            <ul className="space-y-1.5 mt-4">
+              {features.map((feature, index) => (
+                <li key={index} className="flex items-start">
+                  <CheckCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0 text-gray-400" />
+                  <span className="text-sm text-gray-600">
+                    {feature.text}
+                    {feature.isPopular && (
+                      <span className="ml-2 text-xs font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-600">
+                        Popular
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {estimatedTime && (
+            <div className="flex items-center mt-4 text-sm text-gray-500">
+              <Clock className="h-4 w-4 mr-1.5" />
+              <span>Avg. time: {estimatedTime}</span>
+            </div>
+          )}
+        </CardContent>
+
+        <CardFooter className="pt-0">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full flex items-center justify-center py-2.5 px-4 rounded-md text-sm font-medium transition-colors"
+            style={{ 
+              backgroundColor: isHovered ? style.accentColor : 'transparent',
+              color: isHovered ? 'white' : style.accentColor,
+              border: `1px solid ${style.accentColor}`
+            }}
+            onClick={onCtaClick}
+          >
+            {ctaText}
+            <ChevronRight className="ml-1.5 h-4 w-4" />
+          </motion.button>
+        </CardFooter>
+
+        {/* Animated highlight effect on hover */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 pointer-events-none"
+              style={{ 
+                background: `radial-gradient(circle at 50% 50%, ${style.gradientStart}00, ${style.gradientEnd}20)`,
+              }}
+            />
+          )}
+        </AnimatePresence>
+      </Card>
+    </motion.div>
+  );
+}
