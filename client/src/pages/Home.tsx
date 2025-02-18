@@ -4,11 +4,14 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { ChatWidget } from "@/components/ChatWidget";
 import { Button } from "@/components/ui/button";
 import { Home, Building2, Shield, Clock, Wrench, CircuitBoard, Power, DollarSign, Star } from "lucide-react";
+import { useToast } from "@/hooks/use-toast"; 
 import logo from "../assets/o.png";
 import heroImage from "../assets/64FD380B-7484-433E-8AAA-9A71E8C8BAA6.jpeg";
 import serviceImage from "../assets/C8C161C8-D99B-4131-9E02-0F29C92902D7.jpeg";
 
 export default function HomePage() {
+  const { toast } = useToast(); 
+
   const services = [
     {
       icon: CircuitBoard,
@@ -133,8 +136,12 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-5"
+          style={{ backgroundImage: `url(${serviceImage})` }}
+        ></div>
+        <div className="container mx-auto px-4 relative">
           <h2 className="text-3xl font-bold text-center mb-12">
             Why Choose Demand Electric
           </h2>
@@ -182,13 +189,17 @@ export default function HomePage() {
       </section>
 
       {/* Our Commitment section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-5"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        ></div>
+        <div className="container mx-auto px-4 relative">
           <h2 className="text-3xl font-bold text-center mb-12">Our Commitment to You</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div
               whileHover={{ scale: 1.03 }}
-              className="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
+              className="bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
             >
               <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Transparent Process</h3>
               <p className="text-gray-600 mb-6">
@@ -197,14 +208,19 @@ export default function HomePage() {
               </p>
               <Button
                 className="w-full mt-6 bg-[#0039A6] hover:bg-[#002d85]"
-                asChild
+                onClick={() => {
+                  toast({
+                    title: "Coming Soon",
+                    description: "Our detailed process guide will be available soon.",
+                  });
+                }}
               >
-                <a href="/contact">Schedule a Consultation</a>
+                Learn More About Our Process
               </Button>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.03 }}
-              className="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
+              className="bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
             >
               <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Flexible Payment Options</h3>
               <p className="text-gray-600 mb-6">
@@ -227,9 +243,14 @@ export default function HomePage() {
               </ul>
               <Button
                 className="w-full mt-6 bg-[#0039A6] hover:bg-[#002d85]"
-                asChild
+                onClick={() => {
+                  toast({
+                    title: "Coming Soon",
+                    description: "Detailed payment options will be available soon.",
+                  });
+                }}
               >
-                <a href="/contact">Learn More</a>
+                View Payment Options
               </Button>
             </motion.div>
           </div>

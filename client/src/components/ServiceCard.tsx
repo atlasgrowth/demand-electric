@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import { LucideIcon, ChevronRight } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface ServiceCardProps {
   title: string;
   description: string;
   icon: LucideIcon;
-  category?: "residential" | "commercial" | "emergency" | "maintenance";
+  category?: "residential" | "commercial" | "maintenance";
 }
 
 export function ServiceCard({
@@ -17,6 +18,7 @@ export function ServiceCard({
   category = "residential",
 }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const { toast } = useToast();
 
   // Category-based styling
   const categoryStyles = {
@@ -32,21 +34,22 @@ export function ServiceCard({
       gradientEnd: "#C2DDFF",
       iconBg: "bg-blue-100",
     },
-    emergency: {
-      accentColor: "#E05D00",
-      gradientStart: "#FFF2EB",
-      gradientEnd: "#FFE0D1",
-      iconBg: "bg-orange-50",
-    },
     maintenance: {
-      accentColor: "#006644",
-      gradientStart: "#E6F6F0",
-      gradientEnd: "#C2ECD9",
-      iconBg: "bg-green-50",
+      accentColor: "#0039A6",
+      gradientStart: "#EEF5FF",
+      gradientEnd: "#D6E8FF",
+      iconBg: "bg-blue-50",
     },
   };
 
   const style = categoryStyles[category];
+
+  const handleLearnMore = () => {
+    toast({
+      title: "Coming Soon",
+      description: "This feature will be available soon. Please check back later.",
+    });
+  };
 
   return (
     <motion.div
@@ -108,6 +111,7 @@ export function ServiceCard({
               color: isHovered ? 'white' : style.accentColor,
               border: `1px solid ${style.accentColor}`
             }}
+            onClick={handleLearnMore}
           >
             Learn More
             <ChevronRight className="ml-1.5 h-4 w-4" />
