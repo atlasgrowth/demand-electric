@@ -8,13 +8,15 @@ import Services from "@/pages/Services";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
+const base = import.meta.env.VITE_BASE_URL || '';
+
 function Router() {
   return (
     <Layout>
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/services" component={Services} />
-        <Route path="/contact" component={Contact} />
+        <Route path={`${base}/`} component={Home} />
+        <Route path={`${base}/services`} component={Services} />
+        <Route path={`${base}/contact`} component={Contact} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

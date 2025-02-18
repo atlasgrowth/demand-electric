@@ -1,20 +1,22 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 
+const base = import.meta.env.VITE_BASE_URL || '';
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
 
   const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/contact", label: "Contact" },
+    { href: `${base}/`, label: "Home" },
+    { href: `${base}/services`, label: "Services" },
+    { href: `${base}/contact`, label: "Contact" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-white border-b">
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
+          <Link href={`${base}/`}>
             <a className="text-2xl font-bold text-[#0039A6]">
               Demand Electric
             </a>
