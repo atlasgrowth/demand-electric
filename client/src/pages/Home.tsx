@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { ServiceCard } from "@/components/ServiceCard";
 import { QuoteForm } from "@/components/QuoteForm";
+import { ChatWidget } from "@/components/ChatWidget";
 import { Button } from "@/components/ui/button";
-import { Zap, Home, Building2, Shield, Clock, Wrench, CircuitBoard, Power, DollarSign, Star } from "lucide-react";
+import { Home, Building2, Shield, Clock, Wrench, CircuitBoard, Power, DollarSign, Star } from "lucide-react";
 import logo from "../assets/o.png";
 import heroImage from "../assets/64FD380B-7484-433E-8AAA-9A71E8C8BAA6.jpeg";
 import serviceImage from "../assets/C8C161C8-D99B-4131-9E02-0F29C92902D7.jpeg";
@@ -64,7 +65,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="flex-1"
             >
-              <img src={logo} alt="Demand Electric" className="w-64 mb-8" style={{ mixBlendMode: 'multiply' }} />
+              <img src={logo} alt="Demand Electric" className="w-64 mb-8" />
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Your Trusted Electrical Partner
               </h1>
@@ -177,47 +178,41 @@ export default function HomePage() {
 
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Financing Options Available</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Our Commitment to You</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div
               whileHover={{ scale: 1.03 }}
               className="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
             >
-              <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Flexible Payment Plans</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#FF9E1B] font-bold">•</span>
-                  No down payment required
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#FF9E1B] font-bold">•</span>
-                  Competitive interest rates
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#FF9E1B] font-bold">•</span>
-                  Terms up to 60 months
-                </li>
-              </ul>
+              <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Transparent Process</h3>
+              <p className="text-gray-600 mb-6">
+                We'll carefully explain our process, so you know what to expect every step of the way. 
+                Unlike a big corporation that only wants your money, we genuinely want to help.
+              </p>
               <Button
                 className="w-full mt-6 bg-[#0039A6] hover:bg-[#002d85]"
                 asChild
               >
-                <a href="/contact">Learn More</a>
+                <a href="/contact">Schedule a Consultation</a>
               </Button>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.03 }}
               className="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
             >
-              <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Special Offers</h3>
-              <ul className="space-y-4">
+              <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Flexible Payment Options</h3>
+              <p className="text-gray-600 mb-6">
+                We understand that electrical work can be a significant investment. That's why we offer 
+                flexible payment options to make our services accessible to everyone.
+              </p>
+              <ul className="space-y-4 mb-6">
                 <li className="flex items-start gap-2">
                   <span className="text-[#FF9E1B] font-bold">•</span>
-                  Senior & military discounts
+                  Easy payment plans
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#FF9E1B] font-bold">•</span>
-                  Seasonal promotions
+                  Competitive rates
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#FF9E1B] font-bold">•</span>
@@ -228,12 +223,13 @@ export default function HomePage() {
                 className="w-full mt-6 bg-[#0039A6] hover:bg-[#002d85]"
                 asChild
               >
-                <a href="/contact">Contact Us</a>
+                <a href="/contact">Learn More</a>
               </Button>
             </motion.div>
           </div>
         </div>
       </section>
+      <ChatWidget />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import logo from "../assets/o.png";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -38,6 +39,9 @@ export function QuoteForm() {
 
   return (
     <Form {...form}>
+      <div className="mb-6 flex justify-center">
+        <img src={logo} alt="Demand Electric" className="h-16" />
+      </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
