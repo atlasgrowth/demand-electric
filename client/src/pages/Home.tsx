@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { ServiceCard } from "@/components/ServiceCard";
+import { QuoteForm } from "@/components/QuoteForm";
 import { Button } from "@/components/ui/button";
-import { Zap, Home, Building2, Shield, Clock, Wrench, CircuitBoard, Power } from "lucide-react";
+import { Zap, Home, Building2, Shield, Clock, Wrench, CircuitBoard, Power, DollarSign, Star } from "lucide-react";
 import logo from "../assets/o.png";
 import heroImage from "../assets/64FD380B-7484-433E-8AAA-9A71E8C8BAA6.jpeg";
 import serviceImage from "../assets/C8C161C8-D99B-4131-9E02-0F29C92902D7.jpeg";
@@ -63,7 +64,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="flex-1"
             >
-              <img src={logo} alt="Demand Electric" className="w-64 mb-8" />
+              <img src={logo} alt="Demand Electric" className="w-64 mb-8" style={{ mixBlendMode: 'multiply' }} />
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Your Trusted Electrical Partner
               </h1>
@@ -147,20 +148,90 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#0039A6]">
-        <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Let our experienced team handle all your electrical needs with the highest
-            standards of quality and safety.
-          </p>
-          <Button
-            size="lg"
-            className="bg-white text-[#0039A6] hover:bg-gray-100 transform hover:scale-105 transition-all shadow-lg"
-            asChild
-          >
-            <a href="/contact">Schedule Service Now</a>
-          </Button>
+      <section className="py-20 bg-[#0039A6] text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">Get Your Free Quote Today</h2>
+              <p className="text-xl mb-8">
+                Tell us about your electrical project, and we'll provide you with a detailed quote.
+                No obligation - just professional advice you can trust.
+              </p>
+              <div className="bg-white/10 p-6 rounded-lg">
+                <div className="flex items-center gap-4 mb-4">
+                  <Star className="text-[#FF9E1B] h-8 w-8" />
+                  <p className="text-lg">Best-in-class electrical services</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <DollarSign className="text-[#FF9E1B] h-8 w-8" />
+                  <p className="text-lg">Competitive, transparent pricing</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-xl">
+              <QuoteForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Financing Options Available</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
+            >
+              <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Flexible Payment Plans</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FF9E1B] font-bold">•</span>
+                  No down payment required
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FF9E1B] font-bold">•</span>
+                  Competitive interest rates
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FF9E1B] font-bold">•</span>
+                  Terms up to 60 months
+                </li>
+              </ul>
+              <Button
+                className="w-full mt-6 bg-[#0039A6] hover:bg-[#002d85]"
+                asChild
+              >
+                <a href="/contact">Learn More</a>
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0039A6]"
+            >
+              <h3 className="text-xl font-bold mb-4 text-[#0039A6]">Special Offers</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FF9E1B] font-bold">•</span>
+                  Senior & military discounts
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FF9E1B] font-bold">•</span>
+                  Seasonal promotions
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FF9E1B] font-bold">•</span>
+                  Free estimates
+                </li>
+              </ul>
+              <Button
+                className="w-full mt-6 bg-[#0039A6] hover:bg-[#002d85]"
+                asChild
+              >
+                <a href="/contact">Contact Us</a>
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>
