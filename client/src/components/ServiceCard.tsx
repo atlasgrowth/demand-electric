@@ -14,10 +14,12 @@ export function ServiceCard({ title, description, icon: Icon }: ServiceCardProps
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <Card className="h-full">
+      <Card className="h-full border-2 border-gray-100 hover:border-[#0039A6] transition-colors">
         <CardHeader>
-          <Icon className="h-8 w-8 text-orange-500 mb-2" />
-          <CardTitle className="text-xl">{title}</CardTitle>
+          <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+            <Icon className="h-6 w-6 text-[#0039A6]" />
+          </div>
+          <CardTitle className="text-xl text-[#0039A6]">{title}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600">{description}</p>
