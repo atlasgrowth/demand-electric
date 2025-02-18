@@ -132,6 +132,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Why Choose Us section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -180,6 +181,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Our Commitment section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Commitment to You</h2>
