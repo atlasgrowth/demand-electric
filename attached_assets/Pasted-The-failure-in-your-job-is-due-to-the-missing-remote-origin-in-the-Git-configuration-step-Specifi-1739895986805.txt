@@ -1,0 +1,96 @@
+The failure in your job is due to the missing remote 'origin' in the Git configuration step. Specifically, the error message is:
+
+```
+error: No such remote: 'origin'
+```
+
+Here is the relevant part of your workflow file:
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_BASE_URL: /demand-electric
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
+```
+
+To resolve this, ensure that the remote is correctly added before attempting to remove or use it. Here’s how you can adjust your workflow to include adding the remote:
+
+```yaml
+- name: Setup Git config
+  run: |
+    git remote add origin https://github.com/atlasgrowth/demand-electric.git
+    git remote rm origin
+    git remote add origin https://github.com/atlasgrowth/demand-electric.git
+    git config user.name "atlasgrowth"
+    git config user.email "atlasgrowth@users.noreply.github.com"
+```
+
+Add this step before the `Deploy to GitHub Pages` step:
+
+```yaml
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Add the Git config setup here
+      - name: Setup Git config
+        run: |
+          git remote add origin https://github.com/atlasgrowth/demand-electric.git
+          git config user.name "atlasgrowth"
+          git config user.email "atlasgrowth@users.noreply.github.com"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_BASE_URL: /demand-electric
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
+```
+
+This will ensure that the remote 'origin' is correctly set up before the deployment step.

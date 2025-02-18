@@ -14,9 +14,9 @@ function Router() {
   return (
     <Layout>
       <Switch>
-        <Route path={`${base}/`} component={Home} />
-        <Route path={`${base}/services`} component={Services} />
-        <Route path={`${base}/contact`} component={Contact} />
+        <Route path={base + "/"} component={Home} />
+        <Route path={base + "/services"} component={Services} />
+        <Route path={base + "/contact"} component={Contact} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
